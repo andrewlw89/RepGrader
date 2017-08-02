@@ -46,7 +46,7 @@ router.route('/reps')
  		res.json(reps)
  	});
  })
- //post new comment to the database
+ //post new reps to the database
  .post(function(req, res) {
  	var reps = new Reps();
  	//body parser lets us use the req.body
@@ -60,6 +60,38 @@ router.route('/reps')
  			res.json({ message: 'Reps successfully added!' });
  		});
  	});
+router.route('/reps/:reps_id')
+	//The put method gives us the chance to update our reps based on 
+	//the ID passed to the route
+ 	.put(function(req, res) {
+ 		Reps.findById(req.params.reps_id, function(err, reps) {
+ 			if (err)
+ 				res.send(err);
+ 			//setting the new author and text to whatever was changed. If 
+			//nothing was changed we will not alter the field.
+ 			(req.body.name) ? reps.name = req.body.name : null;
+ 			(req.body.age) ? reps.age = req.body.age : null;
+ 			(req.body.situps) ? reps.situps = req.body.situps : null;
+ 			(req.body.pushups) ? reps.pushups = req.body.pushups : null;
+ 			//save reps
+ 			reps.save(function(err) {
+ 				if (err)
+ 					res.send(err);
+ 				res.json({ message: 'Reps has been updated' });
+ 			});
+ 		});
+ 	})
+
+ //delete method for removing a reps from our database
+ .delete(function(req, res) {
+ //selects the reps by its ID, then removes it.
+	 	Reps.remove({ _id: req.params.reps_id }, function(err, reps) {
+	 		if (err)
+	 			res.send(err);
+	 		res.json({ message: 'Reps has been deleted' })
+	 	})
+ 	});
+ 	 
 app.use('/api', router);
 app.listen(port, function() {
  console.log('api running on port ' + port);

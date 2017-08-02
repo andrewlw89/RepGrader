@@ -12,6 +12,8 @@ class RepsBox extends Component {
  		this.state = { data: [] };
  		this.loadRepsFromServer = this.loadRepsFromServer.bind(this);
  		this.handleRepsSubmit = this.handleRepsSubmit.bind(this);
+ 		this.handleRepsDelete = this.handleRepsDelete.bind(this);
+ 		this.handleRepsUpdate = this.handleRepsUpdate.bind(this);
  	}
 
  	loadRepsFromServer() {
@@ -21,13 +23,30 @@ class RepsBox extends Component {
  	}
 
  	handleRepsSubmit(reps) {
- 		axios.post(this.props.url, reps).then(res => {
- 			console.log(res);
- 			this.setState({ data: res});
- 		})
- 		.catch(err => {
+ 		let allReps = this.state.data;
+ 		reps.id = Date.now();
+ 		let newReps = allReps.concat([reps]);
+ 		this.setState({ data: newReps });
+ 		axios.post(this.props.url, reps).catch(err => {
  			console.log(err);
+ 			this.setState({ data: allReps });
  		});
+ 	}
+
+ 	handleRepsDelete(id) {
+ 		console.log(this.props.url);
+ 		axios.delete(`${this.props.url}/${id}`).then(res => {
+ 			console.log('Comment deleted');
+ 		}).catch(err => {
+ 			console.error(err);
+ 		});
+ 	}
+
+ 	handleRepsUpdate(id, reps) {
+ 		//sends the comment id and new author/text to our api
+ 		axios.put(`${this.props.url}/${id}`, reps).catch(err => {
+ 			console.log(err);
+ 		})
  	}
 
  	componentDidMount() {
@@ -39,7 +58,10 @@ class RepsBox extends Component {
  	return (
  		<div style={ style.repsBox }>
  			<h2>Repetitions:</h2>
- 			<RepsList data={ this.state.data }/>
+ 			<RepsList
+ 			onRepsDelete={ this.handleRepsDelete }
+ 			onRepsUpdate={ this.handleRepsUpdate }
+ 			data={ this.state.data }/>
  			<RepsForm onRepsSubmit={ this.handleRepsSubmit }/>
  		</div>
  	)
