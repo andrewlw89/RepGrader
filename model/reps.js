@@ -8,6 +8,7 @@ var Schema = mongoose.Schema;
 var RepsSchema = new Schema({
  name: String,
  age: Number,
+ gender: String,
  situps: Number,
  pushups: Number
 });

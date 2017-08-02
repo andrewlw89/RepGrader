@@ -34,7 +34,6 @@ class RepsBox extends Component {
  	}
 
  	handleRepsDelete(id) {
- 		console.log(this.props.url);
  		axios.delete(`${this.props.url}/${id}`).then(res => {
  			console.log('Comment deleted');
  		}).catch(err => {

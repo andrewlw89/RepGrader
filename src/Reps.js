@@ -9,6 +9,7 @@ class Reps extends Component {
 			edit: false,
 			name: props.name,
 			age: props.age,
+			gender: props.gender,
 			situps: props.situps,
 			pushups: props.pushups
 		}
@@ -73,6 +74,7 @@ class Reps extends Component {
 			<tr>
 				<td>{this.state.name}</td>
 			 	<td>{this.state.age}</td>
+			 	<td>{this.state.gender}</td>
 			 	<td>{this.state.situps}</td>
 			 	<td>{this.state.pushups}</td>
 			 	<td><a style={ style.repsFormPost } onClick={this.handleToggle}>Edit</a></td>

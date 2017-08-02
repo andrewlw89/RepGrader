@@ -5,9 +5,10 @@ import style from './style';
 class RepsForm extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { name: '', age: 0, situps: 0, pushups: 0 };
+		this.state = { name: '', age: 0, gender: 'm', situps: 0, pushups: 0 };
 		this.handleNameChange = this.handleNameChange.bind(this);
 		this.handleAgeChange = this.handleAgeChange.bind(this);
+		this.handleGenderChange = this.handleGenderChange.bind(this);
 		this.handleSitupsChange = this.handleSitupsChange.bind(this);
 		this.handlePushupsChange = this.handlePushupsChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -19,6 +20,11 @@ class RepsForm extends Component {
 
 	handleAgeChange(e) {
 		this.setState({ age: e.target.value });
+	}
+
+	handleGenderChange(e) {
+		this.setState({ gender: e.target.value });
+		console.log(this.state.gender);
 	}
 	
 	handleSitupsChange(e) {
@@ -33,14 +39,15 @@ class RepsForm extends Component {
 		e.preventDefault();
 		let name = this.state.name.trim();
  		let age = this.state.age;
+ 		let gender = this.state.gender;
  		let situps = this.state.situps;
  		let pushups = this.state.pushups;
- 		console.log(name, age, situps, pushups);
+ 		console.log(name, age, gender, situps, pushups);
  		if (!age || !name || !situps || !pushups) {
  			return;
  		}
- 		this.props.onRepsSubmit({ name: name, age: age, situps: situps, pushups: pushups });
- 		this.setState({ name: '', age: 0, situps: 0, pushups: 0 });
+ 		this.props.onRepsSubmit({ name: name, age: age, gender: gender, situps: situps, pushups: pushups });
+ 		this.setState({ name: '', age: 0, gender: '', situps: 0, pushups: 0 });
 	}
 
 	render() {
@@ -56,6 +63,10 @@ class RepsForm extends Component {
 					placeholder='Age'
 					style={ style.repsFormAge}
 					onChange={ this.handleAgeChange } />
+				<select value={ this.state.gender } onChange={ this.handleGenderChange }>
+					<option value="m">Male</option>
+          <option value="f">Female</option>
+        </select>
 				<input
 					type='text'
 					placeholder='Situps'

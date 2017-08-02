@@ -52,6 +52,7 @@ router.route('/reps')
  	//body parser lets us use the req.body
  	reps.name = req.body.name;
  	reps.age = req.body.age;
+ 	reps.gender = req.body.gender;
  	reps.situps = req.body.situps;
  	reps.pushups = req.body.pushups;
 	reps.save(function(err) {
@@ -71,6 +72,7 @@ router.route('/reps/:reps_id')
 			//nothing was changed we will not alter the field.
  			(req.body.name) ? reps.name = req.body.name : null;
  			(req.body.age) ? reps.age = req.body.age : null;
+ 			(req.body.gender) ? reps.gender = req.body.gender : null;
  			(req.body.situps) ? reps.situps = req.body.situps : null;
  			(req.body.pushups) ? reps.pushups = req.body.pushups : null;
  			//save reps
@@ -91,7 +93,7 @@ router.route('/reps/:reps_id')
 	 		res.json({ message: 'Reps has been deleted' })
 	 	})
  	});
- 	 
+
 app.use('/api', router);
 app.listen(port, function() {
  console.log('api running on port ' + port);
