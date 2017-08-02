@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 import RepsBox from './RepsBox';
 
 ReactDOM.render(
-	<RepsBox />,
+	<RepsBox 
+	url='http://localhost:3001/api/reps'
+	pollInterval={2000} />,
 	document.getElementById('root')
 );
