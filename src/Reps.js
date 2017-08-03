@@ -1,5 +1,6 @@
 //Reps.js
 import React, { Component } from 'react';
+import getScores from './getScores';
 import style from './style';
 class Reps extends Component {
 	
@@ -55,10 +56,13 @@ class Reps extends Component {
 		this.setState({ age: e.target.value });
 	}
 
+	handleGenderChange(e) {
+		console.log(e.target.value);
+		this.setState({ gender: e.target.value });
+	}
+
 	handleNameChange(e) {
-		console.log(e.target);
 		this.setState({ name: e.target.value });
-		console.log(this.state);
 	}
 
 	handleSitupsChange(e) {
@@ -93,11 +97,19 @@ class Reps extends Component {
 						style={ style.repsFormName} 
 						onChange={ this.handleNameChange }/>
 				</td>
+				<td>
 					<input
 						type='text'
 						value={ this.state.age}
 						style={ style.repsFormAge} 
 						onChange={ this.handleAgeChange }/>
+				</td>
+				<td>
+					<select value={ this.state.gender } onChange={ this.handleGenderChange }>
+						<option value="m">Male</option>
+          	<option value="f">Female</option>
+        	</select>
+        </td>
 				<td>
 					<input
 						type='text'

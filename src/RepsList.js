@@ -4,6 +4,7 @@ import Reps from './Reps';
 import style from './style';
 
 class RepsList extends Component {
+
 	render() {
  		let repsNodes = this.props.data.map(reps => {
  			return (
@@ -19,7 +20,6 @@ class RepsList extends Component {
  				</Reps>
  			)
  		})
- 		console.log(repsNodes);
  		
  		return (
  			<div style={ style.repsList }>

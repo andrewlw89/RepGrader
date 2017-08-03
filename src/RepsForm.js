@@ -5,7 +5,7 @@ import style from './style';
 class RepsForm extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { name: '', age: 0, gender: 'm', situps: 0, pushups: 0 };
+		this.state = { name: '', age: '', gender: 'm', situps: '', pushups: '' };
 		this.handleNameChange = this.handleNameChange.bind(this);
 		this.handleAgeChange = this.handleAgeChange.bind(this);
 		this.handleGenderChange = this.handleGenderChange.bind(this);
@@ -24,7 +24,6 @@ class RepsForm extends Component {
 
 	handleGenderChange(e) {
 		this.setState({ gender: e.target.value });
-		console.log(this.state.gender);
 	}
 	
 	handleSitupsChange(e) {
@@ -47,7 +46,7 @@ class RepsForm extends Component {
  			return;
  		}
  		this.props.onRepsSubmit({ name: name, age: age, gender: gender, situps: situps, pushups: pushups });
- 		this.setState({ name: '', age: 0, gender: '', situps: 0, pushups: 0 });
+ 		this.setState({ name: '', age: '', gender: '', situps: '', pushups: '' });
 	}
 
 	render() {
@@ -56,12 +55,14 @@ class RepsForm extends Component {
 				<input
 					type='text'
 					placeholder='Your name…'
-					style={ style.repsFormName}
+					value={ this.state.name }
+					style={ style.repsFormName }
 					onChange={ this.handleNameChange } />
 				<input
 					type='text'
 					placeholder='Age'
-					style={ style.repsFormAge}
+					value={ this.state.age }
+					style={ style.repsFormAge }
 					onChange={ this.handleAgeChange } />
 				<select value={ this.state.gender } onChange={ this.handleGenderChange }>
 					<option value="m">Male</option>
@@ -70,11 +71,13 @@ class RepsForm extends Component {
 				<input
 					type='text'
 					placeholder='Situps'
-					style={ style.repsFormSitups}
+					value={ this.state.situps }
+					style={ style.repsFormSitups }
 					onChange={ this.handleSitupsChange } />
 				<input
 					type='text'
 					placeholder='Pushups'
+					value={ this.state.pushups }
 					style={ style.repsFormPushups}
 					onChange={ this.handlePushupsChange } />
 				<input
