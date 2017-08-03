@@ -1,3 +1,11 @@
+This project utilizes React (bootstrapped using Create-React-App) with an Express framework and a mongoDB database hosted on mLab. The current state of the app allows for the basic CRUD uses and can calculate a score for the entries added. The score portion has not yet been integrated into the rest of the application.
+
+To do:
+1.) Export getScores to be loaded into each Reps component, allowing the calculation of a score for each Reps component in RepsList.
+2.) Output the score for each entry and update the UI to be Green or Red based on a pass or fail
+3.) Implement a dropdown that will show the average scores for age groups based on current entries into the system
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
