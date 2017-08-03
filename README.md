@@ -1,9 +1,21 @@
-This project utilizes React (bootstrapped using Create-React-App) with an Express framework and a mongoDB database hosted on mLab. The current state of the app allows for the basic CRUD uses and can calculate a score for the entries added. The score portion has not yet been integrated into the rest of the application.
+This project utilizes React (bootstrapped using Create-React-App) with an Express framework and a mongoDB database hosted on mLab. This app also utilizes:
+  1. node-foreman for launching both my Node API and the React app
+  2. bodyParser for parsing incoming request bodies
+  3. Axios for AJAX calls
+  4. Mongoose for creating schemas for the mongo database
+  5. Nodemon for automatic refreshing of the server.js file.
+  
+  The current state of the app allows for the basic CRUD uses and can calculate a score for the entries added. The score portion has not yet been integrated into the rest of the application.
 
 To do:
 1.) Export getScores to be loaded into each Reps component, allowing the calculation of a score for each Reps component in RepsList.
 2.) Output the score for each entry and update the UI to be Green or Red based on a pass or fail
 3.) Implement a dropdown that will show the average scores for age groups based on current entries into the system
+
+Total time spent: 12 hours
+5 hours spent setting up the basic structure, API, and mongoDB hosted in mLab
+4 hours finishing out the basic CRUD abilities for the application
+3 hours figuring out how best to parse the data and structure my getScores module
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
